@@ -163,8 +163,8 @@ a.grey:hover {
 	Built by <a class="grey" href="http://opendatacity.de">OpenDataCity</a>
 </span>
 <span style="float: right">
- 	<a onClick="lastmode()" href="#">&laquo; Back</a>
- 	<a onClick="nextmode()" href="#">Next &raquo;</a>
+ 	<a onClick="lastmode()" >&laquo; Back</a>
+ 	<a onClick="nextmode()" >Next &raquo;</a>
 <div id="infosign">
 &#9432;
 	<div id="legende">Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>. Every <img src="punkte.jpg"> represents one winning proposal. Size corresponds to the number of team members, color to the overall quality as assessed by the jury. This graphic is inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>. and relies on his phantastic library <a href="http://d3js.org/">d3.js</a>. You're welcome to fork the <a href="https://github.com/mvtango/speedupeurope-graphic">code on GitHub</a>.</div>
@@ -574,16 +574,22 @@ var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[20,30])
 	if (_.keys(nmodes).indexOf(m)>-1 ) {
 		global.randomshow=0;
    		tooltip.hide();
+		var nurl=document.location.href.replace(/#.*$/,"#"+m);
+		if (nurl.indexOf("#")==-1) {
+			nurl=nurl+"#"+m;
+		}
 		if (d) {
 			_.delay(function() { 
 				global.mode=m;
 				force.start();
 				resumeshow();
+				document.location.href=nurl;
 			},d);
 		} else {
 				global.mode=m;
 				force.start();
 				resumeshow();
+				document.location.href=nurl;
 		}
 		var $s=$("#"+m);
 		if ($s) {
