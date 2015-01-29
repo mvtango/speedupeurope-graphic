@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<head><title>SpeedUp Europe - The Winners</title>
+<meta charset="utf-8">
+<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900;subset=latin%2Clatin-ext&#038;ver=3.8.1' type='text/css' media='all' />
+<link rel='stylesheet' id='fixed-google-abel-css'  href='http://fonts.googleapis.com/css?family=Abel&#038;ver=3.8.1' type='text/css' media='all' />
+<link rel="stylesheet" href="tooltip-styles.css">
+
+<style>
+
+
+.node {
+  stroke-width: 1.5px;
+}
+
+* { font-family: 'Roboto','Open Sans', 'Helvetica Neue', Helvetica, sans-serif; }
+
+h2  {
+	font-family: 'Abel', 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 400;
+	font-size: 36px;
+	letter-spacing: -1px;
+	position: absolute;
+	top: -35px;
+	left: 20px;
+	color: #777;
+}
+
+.invisible { display: none; } 
+
+#background {
+position: absolute;
+left: 10px;
+top: 10px;
+width: 100%;
+text-align: left;
+height: 355px;
+background: transparent;
+z-index:
+}
+
+
+.bu {
+	position: absolute; 
+	bottom: -20px;
+	left: 20px; 
+	color: rgb(85,85,85);
+	font-size: 18px; 
+	max-width: 740px;	
+	width: 100%;
+	height: 40px;
+	bottom: -366px;
+	position: relative;
+}
+
+.slide {
+}
+.text {
+	position: absolute;
+	top: 181px;
+	left: 220px;
+	color: #808080;
+}
+
+.text span { display: inline-block; width: 93px; vertical-align: top }
+
+#info { position: absolute;
+		bottom: 0px; 
+		padding-top: 10px;
+		right: 0px;
+		height: 0px;
+		cursor: pointer;
+		color: #555;
+		font-size: 105%;
+		width: 100%;
+}
+
+
+#legende { display: none;
+	position: absolute;
+	right: -3px;
+	bottom: -13px;
+	background: #ffffff;
+	border: 1px solid #eee;
+	padding: 8px;
+	font-size: 100%;
+	line-height: 110%;
+	color: #A0A0A0;
+	text-align: left;
+	width: 500px;
+	z-Index: 999;
+}
+
+#infosign {
+	display: inline-block;
+}
+
+#infosign:hover #legende {
+		display: block;
+}
+
+
+a:visited {
+   color: #070FE1;
+}
+
+a:link {
+   color: #070FE1;
+   text-decoration: none;
+}
+
+a:hover {
+   background-color: #070FE1;
+   color: #ffffff;
+}
+
+a.grey:visited {
+   color: #E0E0E0;
+}
+
+a.grey:link {
+   color: #E0E0E0;
+   text-decoration: underline;
+   text-decoration: underline;
+}
+
+a.grey:hover {
+   color: #000000;
+   background-color: #ffffff;
+}
+
+
+.label { position: absolute; 
+	color: #b0b0b0;
+	background: #ffffff;
+ 	}
+
+.selected {  
+	color: #ff0000;
+ 	}
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/underscorejs/1.5.2/underscore-min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.tooltip.js"></script>
+</head>
+<body style="margin: 0px; padding: 0px; border: 0px;">
+<div id="tosmall" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; padding-top: 150px; padding-left: 80px; padding-right: 80px; display: none">
+	Your screen may not wide enough to show this graphic. We recommend 1024 pixels screen width.  
+	<a href="#" onClick="$('#tosmall').fadeOut()">Show it anyway.</a>
+</div>
+<div id="curtain" style="position: absolute; width: 100%; height: 2000px; background-color: #ffffff; z-Index:1; text-align: center; padding-top: 150px;">	
+<img src="spinner.gif" style="display: inline-block" />
+</div> 
+<div style="margin-left: auto; margin-right: auto; background-color: #fff; width: 100%; max-width: 898px;">
+<div style="max-width: 898px; display: inline-block; text-align: left;">
+</div><br/>
+
+<div style="position: relative; height: 420px; width: 800px; display: inline-block; background: #ffffff; margin-top: 2px; position: relative">
+<div id="background" style="width: 800px; height: 400px">
+</div>
+<div id="info" style="color: #a0a0a0; font-size:18px;">
+<span style="float: left; color: #E0E0E0">
+	Built by <a class="grey" href="http://opendatacity.de">OpenDataCity</a>
+</span>
+<span style="float: right">
+ 	<a onClick="lastmode()" href="#">&laquo; Back</a>
+ 	<a onClick="nextmode()" href="#">Next &raquo;</a>
+<div id="infosign">
+&#9432;
+	<div id="legende">Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>. Every <img src="punkte.jpg"> represents one winning proposal. Size corresponds to the number of team members, color to the overall quality as assessed by the jury. This graphic is inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>. and relies on his phantastic library <a href="http://d3js.org/">d3.js</a>. You're welcome to fork the <a href="https://github.com/mvtango/sue-bubblegraph">code on GitHub</a>.</div>
+</div>
+<div><img src="sue_logo_des.png" style="position: absolute; top: -395px; right: 10px; width: 100px;" /> </div>
+</div>
+<div id="frame" style="width: 800px; height: 350px; position: relative; top: 44px;" ></div>
+</div>
+<div class="invisible">
+
+<div class="slide" id="size">
+ <h2>Size of Team</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ </div> 
+ <div class="label" style="left:6.512%; top:48.49%;">three</div>
+ <div class="label" style="left:36.88%; top:48.49%;">four</div>
+ <div class="label" style="left:63.01%; top:48.49%;">five</div>
+ <div class="bu">Yes, innovation is teamwork. Minimum required team members were three, maximum five.
+ </div>
+</div>
+
+
+<div class="slide" id="gender">
+ <h2>Gender of the Team Leader</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ </div>
+ <div class="label" style="left:15.40%; top:50.21%;">male</div>
+ <div class="label" style="left:50.26%; top:50.21%;">female</div> 
+ <div class="bu">Female leaders submitted better proposals on average. Still, we'd like there to be more of them.
+ </div>
+</div>
+
+<div class="slide" id="multi">
+ <h2>Multinational teams</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ 
+ </div>
+ <div class="label" style="left:7.40%; top:50.21%;">multinational</div>
+ <div class="label" style="left:42.26%; top:50.21%;">one country</div> 
+ <div class="bu">We're based in Germany - and proud that many of our teams are multinational.
+ <br/> 
+ </div>
+</div>
+
+<div class="slide" id="country">
+ <h2>From all over Europe</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ 
+ </div>
+    <div class="label" style="left:0%; top: 62.02%;">Portugal</div>
+    <div class="label" style="left: 11.53%; top: 74.64%;">Spain</div>
+    <div class="label" style="left:16.90%; top:53.35%;">Belgium</div>
+    <div class="label" style="left: 1%; top: 41.78%;">The Netherlands</div> 
+    <div class="label" style="left: 15.4%; top: 22.07%;">United Kingdom</div>
+    <div class="label" style="left: 40.15%; top: 21.92%;">Denmark</div> 
+    <div class="label" style="left: 53.03%; top: 41.92%;">Germany</div>
+    <div class="label" style="left: 37.65%; top: 80.92%;">Italy</div> 
+    <div class="label" style="left: 57.65%; top:10.21%;">Sweden</div>
+    <div class="label" style="left: 76.4%; top: 28.64%;">Latvia</div>
+    <div class="label" style="left: 60.03%; top: 54.08%;">Czech Republic</div>
+    <div class="label" style="left: 64.65%; top: 75.07%;">Serbia</div>
+    <div class="label" style="left: 80.15%; top: 60.78%;">Bulgaria</div>
+    <div class="label" style="left: 80.65%; top: 83.07%;">Greece</div>
+ <div class="bu">In fact, SMEs and team leaders come from 13 different european countries.
+ <br/>
+ </div>
+</div>
+
+<div class="slide" id="sme">
+ <h2>SME-backed or self-employed?</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ 
+ </div>
+ <div class="label" style="left:03.40%; top:50.21%;">self-employed</div>
+ <div class="label" style="left:52.26%; top:50.21%;">sme</div> 
+ <div class="bu">We're glad so many SMEs were encouraged to join.
+ <br/>
+ </div>
+</div>
+
+
+<div class="slide" id="domain">
+ <h2>Domains</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ 
+ </div>
+    <div class="label" style="left: 79%; top: 74.02%;">cleantech</div>
+    <div class="label" style="left: 41.53%; top: 8.64%;">agribusiness</div>
+    <div class="label" style="left: 18.9%; top: 76.35%;">smart city</div>
+    <div class="label" style="left: 73%; top: 21.78%;">cleantech<br>+agribusiness</div> 
+    <div class="label" style="left: 53.4%; top: 71.07%;">cleantech<br>+smart city</div>
+    <div class="label" style="left: 16.15%; top: 21.92%;">smart city<br>+agribusiness</div> 
+    <div class="label" style="left: 53.03%; top: 41.92%;">cleantech<br/>+agribusiness</br>+smart city</div>
+ <div class="bu">Here's how the proposals are distributed among the possible domains.<br/>
+ </div>
+</div>
+
+
+<div class="slide" id="score">
+ <h2>General Score</h2>
+ <div class="label" style="left:6.909%; top:63.35%;">Good</div>
+ <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
+
+<div class="slide" id="scoreimpact">
+ <h2>Impact Score</h2>
+ <div class="label" style="left:6.909%; top:63.35%;">Good</div>
+ <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
+ <div class="bu">Do the proposals have a fair chance of making a big impact? This graph shows what we thought.  
+ </div>
+</div>
+
+
+<div class="slide" id="scoreteam">
+ <h2>Team Score</h2>
+ <div class="label" style="left:6.909%; top:63.35%;">Good</div>
+ <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
+ <div class="bu">People are as im important as ideas, if not more. Here's ho we rated the teams.
+ <br/> 
+ </div>
+</div>
+
+<div class="slide" id="scorefiware">
+ <h2>Tecnology Score</h2>
+ <div class="label" style="left:6.909%; top:63.35%;">Good</div>
+ <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
+ <div class="bu">Our technologists judged the technical side: Wow about the use of FIWARE technology?
+ </div>
+</div>
+
+
+
+</div>
+</div>
+
+<br/>
+<script>
+
+var settings= {
+	width: 800,
+	height: 350,
+	vspace: 50,
+	hspace: 60,
+	vpadding: 40,
+	hpadding: 40
+}
+
+var lastlabel=null;
+
+
+var fill = d3.scale.category10();
+
+var nodes = [];
+
+function make_areas(cols,rows) {
+	var cnames="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	var x0=settings.hspace;
+	var y0=settings.vspace;
+	var x1=settings.width-settings.hspace;
+	var y1=settings.height-settings.vspace;
+	var awidth=((x1-x0)-((cols-1)*settings.hpadding))/cols;
+	var aheight=((y1-y0)-((rows-1)*settings.vpadding))/rows;
+	var results={};
+	for (var x=0;x<cols;x++) {
+	    for (var y=0;y<rows;y++) {
+	    	var name;
+		if ((cols>1) && (rows>1)) {
+			name=cnames[x]+y;
+		} else {
+		   if (cols>1) {
+		      name=""+x;
+		   } else {
+		      name=""+y;
+		   }
+		}
+		results[name]=[ { x: x0+x*(awidth+settings.hpadding), 
+		                  y: y0+y*(aheight+settings.vpadding)
+				  ,h:aheight, w: awidth} ]
+	    }
+	 }
+	 return results
+}
+
+
+// <>
+var nmodes = (function() {
+	var nmodes={}
+	var scorescale=d3.scale.quantize().domain([21,28.5]).range(["0","1","2","3","4","5","6","7","8","9"]);
+	var fiwarescale=d3.scale.quantize().domain([6,10]).range(["0","1","2","3","4","5","6","7","8","9"]);
+	var teamscale=d3.scale.quantize().domain([7.2,9.5]).range(["0","1","2","3","4","5","6","7","8","9"]);
+	var impactscale=d3.scale.quantize().domain([5.3,9]).range(["0","1","2","3","4","5","6","7","8","9"]);
+	var numericfoci=make_areas(10,1);
+	var dualfoci=make_areas(5,1);
+	var threefoci=make_areas(3,1);
+	var ninefoci=make_areas(5,5);
+	var mapfoci=make_areas(16,11);
+	var ninemap= { 'YNN' : 'C0', // agribusiness 
+		       'NYN' : 'A3', // smartcity
+		       'NNY' : 'E3', // cleantech
+		       'YYN' : 'A1', // agribusiness + smartcity
+		       'YNY' : 'E1', // agribusiness + cleantech
+		       'NYY' : 'C4', // smartcity + cleantech
+		       'YYY' : 'C2', // smartcity + cleantech + agribusiness
+		       'NNN' : 'E4', // nothing at all
+		      }
+	var countrymap= { 'Portugal' :       'A8',
+	                  'Spain'    :       'B8',
+			  'United Kingdom' : 'D2',
+			  'Belgium'  :       'C5',
+			  'The Netherlands' :'D4',
+			  'Denmark'  :       'H2',
+			  'Germany'  :       'H6',
+			  'Italy'    :       'H10',
+			  'Sweden'   :       'K1',
+			  'Latvia'   :       'M2',
+			  'Czech Republic'  :'L7',
+			  'Bulgaria' :       'O8',
+			  'Serbia'   :       'M9',
+			  'Greece'   :       'P10'
+			 }
+
+	nmodes["score"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return scorescale(d["total"]) }
+		};
+	nmodes["scoreimpact"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return impactscale(d["impactavg"]) }
+		};
+	nmodes["scoreteam"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return teamscale(d["teamavg"]) }
+		};
+	nmodes["scorefiware"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return fiwarescale(d["fiwareavg"]) }
+		};
+	nmodes["gender"]=
+		{ foci:       dualfoci,
+		  translate : function(d) { return d["leadergender"]=="m" ? "1" : "3" }
+		};
+	nmodes["sme"]=
+		{ foci:       dualfoci,
+		  translate : function(d) { return d["sme"]=="T" ? "1" : "3" }
+		};
+	nmodes["multi"]=
+		{ foci:       dualfoci,
+		  translate : function(d) { return d["teamint"]=="Y" ? "1" : "3" }
+		};
+	nmodes["domain"]=
+		{ foci:       ninefoci,
+		  translate : function(d) { 
+				return ninemap[d["domains"]] }
+		};
+	nmodes["size"]=
+		{ foci:       threefoci,
+		  translate : function(d) { 
+				return ""+Math.floor(d["teamsize"]-3) }
+		};
+	nmodes["country"]=
+		{ foci:       mapfoci,
+		  translate : function(d) { 
+				return countrymap[d.country] }
+		};
+	return nmodes
+})();
+
+
+preload=[ 
+
+	// { "domid" : "#svg-berlin", "path"  : "berlin.svg", "transform" : "translate(-40 -60) scale(.5)" }
+
+]
+    
+global = { mode : "gender", randomshow: 1, randomshow_enabled : 1 },
+
+
+/* prepare interpolators for areas. an interpolator gives a random position within that area */
+_.each(nmodes,function(value,key) {
+	interp={};
+	_.each(value.foci,function(mv,mk) {
+		var ips=[];
+		_.each(mv,function(e) {
+		      ips.push({ x: e.x+e.w/2, y: e.y+e.h/2});
+		});
+	  	interp[mk]=ips;
+	});
+	value['interp']=interp;
+});
+
+
+
+
+
+var svg = d3.select("div#frame").append("svg")
+    .attr("width", settings.width)
+    .attr("height", settings.height)
+	.on("mouseup", function() {
+		  var a=d3.mouse(this); 
+		  d={ x: a[0], y: a[1]};
+		  // console.log('<div class="label" style="left:'+((d.x*100/settings.width)+"").substr(0,5)+'%; top:'+((d.y*100/settings.height)+"").substr(0,5)+'%;"> </div>');
+	 });
+
+var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+	 var f='<strong>'+d["acronym"]+"</strong> ";
+	 if (d["title"]>"") {
+	 	f=f+" - "+d["title"];
+	 }
+	 f=f+'<br /><span style="font-size: 80%">'+d["teamsize"]+" ";
+	 if (d["sme"]!="T") {
+	 	f=f+"SME ";
+	 }
+	 f=f+" Team members from "+d["country"];
+	 if (d["teamint"]=='Y') {
+	 	f=f+" and elsewhere.";
+	 }
+	 f=f+"</span>";
+	 return(f); 
+	 });
+
+svg.call(tooltip);
+
+var force = d3.layout.force()
+    .nodes(nodes)
+    .links([])
+    .gravity(0)
+    .charge(-10)
+    .chargeDistance(20)
+    .size([settings.width, settings.height])
+    .on("tick", tick);
+
+
+var node = svg.selectAll("circle");
+
+function tick(e) {
+  var k = .15 * e.alpha;
+  var q = d3.geom.quadtree(nodes),
+      i = 0,
+      n = nodes.length;
+
+  // Push nodes toward their designated focus.
+  nodes.forEach(function(o, i) {
+    focus=o.ips[global.mode];
+    o.y += (focus.y - o.y) * k;
+    o.x += (focus.x - o.x) * k;
+  });
+
+  while (++i < n) q.visit(collide(nodes[i]));
+
+  node
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
+}
+
+radiusscale=d3.scale.linear().domain([3,5]).range([4,8]);
+
+//  http://bl.ocks.org/mbostock/3231298 
+
+function collide(node) {
+  var r = node.radius + 16,
+      nx1 = node.x - r,
+      nx2 = node.x + r,
+      ny1 = node.y - r,
+      ny2 = node.y + r;
+  return function(quad, x1, y1, x2, y2) {
+    if (quad.point && (quad.point !== node)) {
+      var x = node.x - quad.point.x,
+          y = node.y - quad.point.y,
+          l = Math.sqrt(x * x + y * y),
+          r = node.radius + quad.point.radius;
+      if (l < r) {
+        l = (l - r) / l * .5;
+        node.x -= x *= l;
+        node.y -= y *= l;
+        quad.point.x += x;
+        quad.point.y += y;
+      }
+    }
+    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+  };
+}
+
+
+// http://stackoverflow.com/questions/17671252/d3-create-a-continous-color-scale-with-many-strings-inputs-for-the-range-and-dy 
+
+function heatmapColor(colors,domain) {
+
+	var heatmapColor = d3.scale.linear()
+  			   .domain(d3.range(0, 1, 1.0 / (colors.length - 1)))
+  			   .range(colors);
+	var c = d3.scale.linear().domain(domain).range([0,1]);
+
+	var f= function(v) { return heatmapColor(c(v)) }
+
+	return f
+}
+
+//
+var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[20,30])
+
+      
+      
+   function themode(m,d) {
+	if (_.keys(nmodes).indexOf(m)>-1 ) {
+		global.randomshow=0;
+   		tooltip.hide();
+		if (d) {
+			_.delay(function() { 
+				global.mode=m;
+				force.start();
+				resumeshow();
+			},d);
+		} else {
+				global.mode=m;
+				force.start();
+				resumeshow();
+		}
+		var $s=$("#"+m);
+		if ($s) {
+			$('#background').html($s.html());
+		}
+	}
+   }
+
+_.each(preload,function(value) {
+	d3.xml(value.path,"image/svg+xml", function(xml) {
+	   if (xml != null) {
+	   	$($("svg")[0]).prepend(xml.documentElement);
+	   	d3.select(value.domid).attr("transform",value.transform);
+	   	_.delay(function() { $("#curtain").fadeOut(); }, 100);
+	   }
+	})
+});
+	
+var modes=_.map($(".slide"),function (e) { return($(e).attr("id")) });
+
+function nextmode() {
+	var i=modes.indexOf(global.mode);
+	i=i+1;
+	if (i==modes.length) {
+		i=0;
+	}
+   themode(modes[i],100);
+}
+
+function lastmode() {
+	var i=modes.indexOf(global.mode);
+	i=i-1;
+	if (i<0) {
+		i=modes.length-1;
+	}
+   themode(modes[i],100);
+}
+
+/* 
+$("svg").on("click",function(e) {
+	nextmode();
+	e.preventDefault();
+});
+$("#background").on("click",function(e) {
+	nextmode();
+	e.preventDefault();
+});
+*/
+$(document).ready(function() {
+	if ($(window).width()<840) {
+		$("#tosmall").css({ width: $("window").width()+"px" }).fadeIn();
+	}
+
+});
+
+
+d3.csv("sue.csv",function(d) { 
+			_.each(["total","teamavg","teamsize","impactavg","fiwareavg"], function(e,i) {
+				d[e]=parseFloat(d[e]);
+			})
+		  	d["domains"]=d["agribusiness"]+d["smartcity"]+d["cleantech"];
+			if (d["smecountry"]>"") {
+				d["country"]=d["smecountry"];
+			} else {
+				d["country"]=d["leadercountry"];
+			}
+			return(d) 
+		 },
+	function(error,rows) {
+	_.each(rows, function(n) {
+		n.radius=radiusscale(n["teamsize"]);
+		n.fill=heatmap(n["total"]);
+		/* assign postion for each mode */
+		n.ips={}
+		_.each(nmodes,function(obj,key) {
+			focus=obj.interp[obj.translate(n)]; /* which bucket for that mode? */
+			if (typeof focus == "undefined") {
+				console.log("key: "+key+" ");
+				console.log("translated "+obj.translate(n));
+				console.log(n);
+			} else {
+				n.ips[key]=focus[Math.floor(focus.length*Math.random())];
+			}
+		});
+		n.rand=Math.random();
+		nodes.push(n);
+	})
+
+  resumeshow=_.debounce(function() { global.randomshow=global.randomshow_enabled; },20000);
+
+  node = node.data(nodes);
+
+  node.enter().append("circle")
+      .attr("class", "node")
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", function(d) { return d.radius })
+      .style("fill", function(d) { return d.fill; })
+      .style("stroke", function(d) { return d3.rgb(d.fill).darker(0).toString(); }) 
+      .call(force.drag)
+      .on('mouseover', function(d,e) { global.randomshow=0; tooltip.show(d,$("circle")[e]); })
+      .on('mouseout', function(d,e) { tooltip.hide(); resumeshow()});
+
+      $("#curtain").fadeOut(1000);
+      var h=document.location.href.match("#(.*)$");
+      if (h) {
+      	h=h[1];
+	if (_.keys(nmodes).indexOf(h)>-1) {
+		themode(h);
+	} else {
+		themode(modes[0])
+	}
+     } else {
+     	themode(modes[0]); 
+     }
+});
+/*
+svg.selectAll("image").data([0]).enter()
+            .append("svg:image")
+	    .attr("xlink:href", "./sue_logo_des.png")
+            .attr("x", "60")
+            .attr("y", "60")
+	    .attr("width","300")
+	    .attr("height","171");
+
+*/
+
+window.setInterval(function() {
+	var circles=$("circle");
+	if ((global.randomshow) && (circles.length>0)) {
+		var rn=Math.floor(Math.random()*nodes.length);
+		tooltip.show(nodes[rn],circles[rn]);
+		global.randomshow=rn;
+	}
+},10000);
+
+
+window.setInterval(function() {
+	if (global.randomshow) {
+		tooltip.hide();
+		_.delay(nextmode(),100);
+	}
+},65000);
+
+
+
+
+	
+</script>
+
+</body>
+</html>
