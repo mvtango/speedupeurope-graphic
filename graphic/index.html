@@ -99,13 +99,14 @@ z-index:
 
 #navi a {
 	padding: 4px;
-	border: 1px solid #990033;
+	border: 1px solid #A0A0A0;
 	background-color: #ffffff; 
 	border-radius: 4px;
+	color: #808080;
 }
 
 #navi a:hover {
-   background-color: #990033;
+   background-color: #C0C0C0;
    color: #ffffff;
 }
 
@@ -181,7 +182,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 </div>
 <!--[if lte IE 9]>
 <script>
-$("#browsehappy").show();
+ $("#browsehappy").show();
 </script>
 <![endif] -->
 
@@ -274,7 +275,7 @@ $("#browsehappy").show();
     <div class="label" style="left: 65.65%; top: 75.07%;">Serbia</div>
     <div class="label" style="left: 80.15%; top: 60.78%;">Bulgaria</div>
     <div class="label" style="left: 81.65%; top: 83.07%;">Greece</div>
- <div class="bu">SMEs and team leaders come from 13 different european countries.
+ <div class="bu">Companies and team leaders come from 13 different european countries.
  <br/>
  </div>
 </div>
@@ -286,7 +287,7 @@ $("#browsehappy").show();
  </div>
  <div class="label" style="left:03.40%; top:50.21%;">self-employed</div>
  <div class="label" style="left:52.26%; top:50.21%;">sme</div> 
- <div class="bu">We're glad so many SMEs were encouraged to join.
+ <div class="bu">We're glad so many small and medium-sized enterprises (SMEs) were encouraged to join.
  <br/>
  </div>
 </div>
@@ -551,7 +552,7 @@ function put_tooltip(e) {
       var c=$("circle")[e];
       var d=nodes[e]
       var dir="n";
-      if (d.y<((settings.height+0.0)*0.2)) {
+      if (d.y<((settings.height+0.0)*0.3)) {
 	dir="s";
        };
       if (d.x<(settings.width*0.2)) {
