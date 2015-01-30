@@ -61,15 +61,17 @@ z-index:
 .text span { display: inline-block; width: 93px; vertical-align: top }
 
 #info { position: absolute;
-		bottom: 3px; 
+		bottom: -33px; 
 		padding-top: 10px;
 		right: 0px;
-		height: 0px;
+		height: 35px;
 		cursor: pointer;
 		color: #555;
 		font-size: 105%;
 		width: 100%;
+		z-Index:2;
 }
+
 
 
 #legende { display: none;
@@ -200,8 +202,8 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 <div style="position: relative; height: 420px; width: 100%; max-width: 800px; display: inline-block; background: #ffffff; position: relative">
 <div id="background" style="width: 100%; max-width: 800px; height: 400px">
 </div>
-<div id="info" style="color: #a0a0a0; font-size:18px; text-align: center">
-<span style="float: left; color: #E0E0E0; position: absolute; left: 0px; z-Index:1">
+<div id="info" style="color: #a0a0a0; font-size:18px; text-align: center; z-index:1">
+<span style="display: none; float: left; color: #E0E0E0; position: absolute; left: 0px; z-Index:2" id="credit">
 	Interactive by <a class="grey" target="_blank" href="http://opendatacity.de">OpenDataCity</a>
 </span>
 <span id="navi" style="margin: auto">
@@ -555,7 +557,7 @@ function put_tooltip(e) {
       if (d.y<((settings.height+0.0)*0.3)) {
 	dir="s";
        };
-      if (d.x<(settings.width*0.2)) {
+      if (d.x<(settings.width*0.4)) {
 	dir="e";
       }
       if (d.x>(settings.width*0.8)) {
@@ -810,6 +812,8 @@ window.setInterval(function() {
 		var rn=Math.floor(Math.random()*nodes.length);
 		put_tooltip(rn);
 		global.randomshow=rn;
+		$("#navi").fadeOut();
+		$("#credit").fadeIn();
 	}
 },10000);
 
@@ -832,6 +836,12 @@ $(document).ready(function() {
 	if (window.parent==window) {
 		$("#logo-div").show();
 	}
+	$("#info").hover( function() { $("#credit").fadeIn(); $("#navi").fadeIn(); },
+	                       function() { $("#credit").fadeOut() });
+
+	$("body").on("mousemove", function() { $("#navi").fadeIn(); });
+
+
 });
 
 	
