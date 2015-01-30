@@ -15,13 +15,13 @@
 * { font-family: 'Roboto','Open Sans', 'Helvetica Neue', Helvetica, sans-serif; }
 
 h2  {
-	font-family: 'Abel', 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+	font-family: 'Roboto', 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
 	font-weight: 400;
-	font-size: 36px;
+	font-size: 28px;
 	letter-spacing: -1px;
 	position: absolute;
-	top: -35px;
-	left: 20px;
+	top: 20px;
+	left: -8px;
 	color: #777;
 }
 
@@ -137,6 +137,11 @@ a.grey:hover {
 .selected {  
 	color: #ff0000;
  	}
+
+#logo-div {
+	display: none;
+}
+
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/underscorejs/1.5.2/underscore-min.js"></script>
@@ -149,7 +154,7 @@ a.grey:hover {
 	<a href="#" onClick="$('#tosmall').fadeOut()">Show it anyway.</a>
 </div>
 <div id="browsehappy" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; display: none;background-color: #a0a0a0; padding-top: 10px;">
-You're using a dangerously antique browser. Please <a href="http://browsehappy.com/">upgrade</a> if you can. Here's a preview of the graphic:<br/><br/>
+You're using a dangerously antique browser. Please <a target="_blank" href="http://browsehappy.com/">upgrade</a> if you can. Here's a preview of the graphic:<br/><br/>
 	<div style="text-align: center">
 	<img src="screenshot.png" style="display: inline-block; width:750px">
 	</div>
@@ -167,13 +172,13 @@ $("#browsehappy").show();
 <div style="margin-left: auto; margin-right: auto; background-color: #fff; width: 100%; max-width: 898px;">
 <div style="max-width: 898px; display: inline-block; text-align: left;">
 </div><br/>
-
+<h1 style="position: absolute;z-Index: 1; margin-top: 0px; ">Welcome our 100 winners!</h1>
 <div style="position: relative; height: 420px; width: 800px; display: inline-block; background: #ffffff; margin-top: 2px; position: relative">
 <div id="background" style="width: 800px; height: 400px">
 </div>
 <div id="info" style="color: #a0a0a0; font-size:18px;">
 <span style="float: left; color: #E0E0E0">
-	Built by <a class="grey" href="http://opendatacity.de">OpenDataCity</a>
+	Built by <a class="grey" target="_blank" href="http://opendatacity.de">OpenDataCity</a>
 </span>
 <span id="navi" style="float: right">
  	<a onClick="lastmode()" href="#" >&laquo; Back</a>
@@ -187,7 +192,7 @@ $("#browsehappy").show();
 	
 	<p style="font-size:80%"> This graphic is inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>, and relies heavily on his mind-blowing <a href="http://d3js.org/">d3.js</a>. You're welcome to fork the <a href="https://github.com/mvtango/speedupeurope-graphic">code on GitHub</a>. Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>.</p> </div>
 </div>
-<div><img src="sue_logo_des.png" style="position: absolute; top: -395px; right: 10px; width: 100px;" /> </div>
+<div id="logo-div" style="position: absolute; top: -414px; right: 10px; z-index:9999;" ><a target="_blank" href="http://speedupeurope.eu"><img src="sue_logo_des.png" style="border: 0px; width: 100px;" /></a></div>
 </div>
 <div id="frame" style="width: 800px; height: 350px; position: relative; top: 44px;" ></div>
 </div>
@@ -270,7 +275,7 @@ $("#browsehappy").show();
  
  </div>
     <div class="label" style="left: 79%; top: 74.02%;">cleantech</div>
-    <div class="label" style="left: 41.53%; top: 8.64%;">agribusiness</div>
+    <div class="label" style="left: 41.53%; top: 29.64%;">agribusiness</div>
     <div class="label" style="left: 18.9%; top: 76.35%;">smart city</div>
     <div class="label" style="left: 73%; top: 21.78%;">cleantech<br>+agribusiness</div> 
     <div class="label" style="left: 53.4%; top: 71.07%;">cleantech<br>+smart city</div>
@@ -691,6 +696,9 @@ $("#background").on("click",function(e) {
 $(document).ready(function() {
 	if ($(window).width()<800) {
 		$("#tosmall").css({ width: $("window").width()+"px" }).fadeIn();
+	}
+	if (window.parent==window) {
+		$("#logo-div").show();
 	}
 
 });
