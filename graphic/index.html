@@ -182,7 +182,8 @@ $("#browsehappy").show();
 &#9432;
 	<div id="legende"><p>Each <img src="punkte.jpg"> represents one winning proposal. Size corresponds to the number of team members, color to the overall quality as assessed by the jury.</p>
 
-	<p>Hovering over a <img src="punkte.jpg"> will give you the name and other information, clicking on it will follow that proposal through the stages of the visualization.</p>
+	<p>Hovering will give you more info, clicking will follow the proposal through the visualization.</p>
+
 	
 	<p style="font-size:80%"> This graphic is inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>, and relies heavily on his mind-blowing <a href="http://d3js.org/">d3.js</a>. You're welcome to fork the <a href="https://github.com/mvtango/speedupeurope-graphic">code on GitHub</a>. Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>.</p> </div>
 </div>
@@ -461,6 +462,11 @@ preload=[
     
 global = { mode : "gender", randomshow: 1, randomshow_enabled : 1, follow : false };
 
+(function() { 
+	var h=document.location.href.match("#(.*)$");
+      	global.startwith= h ? h[1].toLowerCase() : "";
+})();
+
 
 /* prepare interpolators for areas. an interpolator gives a random position within that area */
 _.each(nmodes,function(value,key) {
@@ -714,8 +720,10 @@ d3.csv("sue.csv",function(d) {
 				n.ips[key]=focus[Math.floor(focus.length*Math.random())];
 			}
 		});
-		n.rand=Math.random();
 		nodes.push(n);
+		if (global.startwith && (global.follow == false) && (n.acronym.toLowerCase()==global.startwith)) {
+			global.follow=nodes.length-1;
+		}
 	})
 
   resumeshow=_.debounce(function() { global.randomshow=global.randomshow_enabled; },20000);
@@ -742,11 +750,9 @@ d3.csv("sue.csv",function(d) {
 					d3.select(this).on("mouseover")(d,e);
 				   }});
 
-
       $("#curtain").fadeOut(1000);
-      var h=document.location.href.match("#(.*)$");
-      if (h) {
-      	h=h[1];
+      if (global.startwith) {
+      	h=global.startwith;
 	if (_.keys(nmodes).indexOf(h)>-1) {
 		themode(h);
 	} else {
@@ -755,6 +761,7 @@ d3.csv("sue.csv",function(d) {
      } else {
      	themode(modes[0]); 
      }
+
 });
 /*
 svg.selectAll("image").data([0]).enter()
