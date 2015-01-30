@@ -1,0 +1,42 @@
+<html>
+<head><title>Embedding</title>
+
+<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900;subset=latin%2Clatin-ext&#038;ver=3.8.1' type='text/css' media='all' />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<style>
+* { font-family: "Robota",sans,Arial }
+
+</style>
+</head>
+<body style="padding: 40px; background-color:#000000; color: #ffffff;font-weight: bold">
+<div style="width:800px; background: #303030; margin:auto">
+<h2 style="text-align: center">Embedding</h2>
+<div id="codediv" style="resize: both;padding-bottom:10px; overflow: hidden;min-width: 300px;min-height:300px;">
+<iframe src="./index.html" frameborder=0 scrolling=no width=800 height=465></iframe>
+</div>
+<div>
+<h4 style="text-align: center">Embed Code</h4>
+<form>
+<div style="width: 500px; margin: auto; padding-bottom: 10px">
+<textarea style="width: 100%; height: 60px;">
+</div>
+</textarea>
+</form>
+</div>
+</div>
+<script>
+$(document).ready(function() {
+	try {
+		document.domain=document.location.hostname;
+	} catch(e) { };
+	url=document.location.href.replace(/\/[^\/]+$/,"/");
+	$("iframe").attr("src",url);
+	window.setInterval(function() {
+		var html=$("#codediv").html();
+		html=html.replace(/src="[^"]+"/,'src="'+frames[0].document.location.href+'"');
+		$("textarea").val(html);
+	}, 500);
+});
+</script>
+</body>
+</html>

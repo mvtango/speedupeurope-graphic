@@ -143,9 +143,9 @@ a.grey:hover {
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="d3.tooltip.js"></script>
 </head>
-<body style="margin: 0px; padding: 0px; border: 0px;">
+<body style="margin: 0px; padding: 0px; border: 0px; background: #ffffff">
 <div id="tosmall" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; padding-top: 150px; padding-left: 80px; padding-right: 80px; display: none">
-	Your screen may not wide enough to show this graphic. We recommend 1024 pixels screen width.  
+	Your screen may not wide enough to show this graphic. We recommend 800 pixels screen width.  
 	<a href="#" onClick="$('#tosmall').fadeOut()">Show it anyway.</a>
 </div>
 <div id="browsehappy" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; display: none;background-color: #a0a0a0; padding-top: 10px;">
@@ -323,6 +323,10 @@ $("#browsehappy").show();
 
 <br/>
 <script>
+
+	try {
+		document.domain=document.location.hostname;
+	} catch(e) { };
 
 var settings= {
 	width: 800,
@@ -685,7 +689,7 @@ $("#background").on("click",function(e) {
 });
 */
 $(document).ready(function() {
-	if ($(window).width()<840) {
+	if ($(window).width()<800) {
 		$("#tosmall").css({ width: $("window").width()+"px" }).fadeIn();
 	}
 
