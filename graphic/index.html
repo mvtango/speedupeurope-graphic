@@ -86,7 +86,7 @@ z-index:
 	line-height: 110%;
 	color: #A0A0A0;
 	text-align: left;
-	width: 500px;
+	width: 800px;
 	z-Index: 999;
 }
 
@@ -148,6 +148,19 @@ a.grey:hover {
 	Your screen may not wide enough to show this graphic. We recommend 1024 pixels screen width.  
 	<a href="#" onClick="$('#tosmall').fadeOut()">Show it anyway.</a>
 </div>
+<div id="browsehappy" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; display: none;background-color: #a0a0a0; padding-top: 10px;">
+You're using a dangerously antique browser. Please <a href="http://browsehappy.com/">upgrade</a> if you can. Here's a preview of the graphic:<br/><br/>
+	<div style="text-align: center">
+	<img src="screenshot.png" style="display: inline-block; width:750px">
+	</div>
+</div>
+<!--[if lte IE 9]>
+<script>
+$("#browsehappy").show();
+</script>
+<![endif] -->
+
+
 <div id="curtain" style="position: absolute; width: 100%; height: 2000px; background-color: #ffffff; z-Index:1; text-align: center; padding-top: 150px;">	
 <img src="spinner.gif" style="display: inline-block" />
 </div> 
@@ -162,12 +175,16 @@ a.grey:hover {
 <span style="float: left; color: #E0E0E0">
 	Built by <a class="grey" href="http://opendatacity.de">OpenDataCity</a>
 </span>
-<span style="float: right">
+<span id="navi" style="float: right">
  	<a onClick="lastmode()" href="#" >&laquo; Back</a>
  	<a onClick="nextmode()" href="#" >Next &raquo;</a>
 <div id="infosign">
 &#9432;
-	<div id="legende">Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>. Every <img src="punkte.jpg"> represents one winning proposal. Size corresponds to the number of team members, color to the overall quality as assessed by the jury. This graphic is inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>, and relies heavily on his mind-blowing <a href="http://d3js.org/">d3.js</a>. You're welcome to fork the <a href="https://github.com/mvtango/speedupeurope-graphic">code on GitHub</a>.</div>
+	<div id="legende"><p>Each <img src="punkte.jpg"> represents one winning proposal. Size corresponds to the number of team members, color to the overall quality as assessed by the jury.</p>
+
+	<p>Hovering over a <img src="punkte.jpg"> will give you the name and other information, clicking on it will follow that proposal through the stages of the visualization.</p>
+	
+	<p style="font-size:80%"> This graphic is inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>, and relies heavily on his mind-blowing <a href="http://d3js.org/">d3.js</a>. You're welcome to fork the <a href="https://github.com/mvtango/speedupeurope-graphic">code on GitHub</a>. Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>.</p> </div>
 </div>
 <div><img src="sue_logo_des.png" style="position: absolute; top: -395px; right: 10px; width: 100px;" /> </div>
 </div>
@@ -198,7 +215,7 @@ a.grey:hover {
 </div>
 
 <div class="slide" id="multi">
- <h2>Multinational teams</h2>
+ <h2>Multinational Teams</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
  
  </div>
@@ -217,24 +234,24 @@ a.grey:hover {
     <div class="label" style="left:0%; top: 62.02%;">Portugal</div>
     <div class="label" style="left: 11.53%; top: 74.64%;">Spain</div>
     <div class="label" style="left:16.90%; top:53.35%;">Belgium</div>
-    <div class="label" style="left: 1%; top: 41.78%;">The Netherlands</div> 
+    <div class="label" style="left: 6%; top: 36.78%;">The Netherlands</div> 
     <div class="label" style="left: 15.4%; top: 22.07%;">United Kingdom</div>
     <div class="label" style="left: 40.15%; top: 21.92%;">Denmark</div> 
-    <div class="label" style="left: 53.03%; top: 41.92%;">Germany</div>
-    <div class="label" style="left: 37.65%; top: 80.92%;">Italy</div> 
-    <div class="label" style="left: 57.65%; top:10.21%;">Sweden</div>
+    <div class="label" style="left: 52.03%; top: 41.92%;">Germany</div>
+    <div class="label" style="left: 38.65%; top: 80.92%;">Italy</div> 
+    <div class="label" style="left: 57.65%; top:12.21%;">Sweden</div>
     <div class="label" style="left: 76.4%; top: 28.64%;">Latvia</div>
     <div class="label" style="left: 60.03%; top: 54.08%;">Czech Republic</div>
-    <div class="label" style="left: 64.65%; top: 75.07%;">Serbia</div>
+    <div class="label" style="left: 65.65%; top: 75.07%;">Serbia</div>
     <div class="label" style="left: 80.15%; top: 60.78%;">Bulgaria</div>
-    <div class="label" style="left: 80.65%; top: 83.07%;">Greece</div>
+    <div class="label" style="left: 81.65%; top: 83.07%;">Greece</div>
  <div class="bu">In fact, SMEs and team leaders come from 13 different european countries.
  <br/>
  </div>
 </div>
 
 <div class="slide" id="sme">
- <h2>SME-backed or self-employed?</h2>
+ <h2>SME-backed or Self-employed?</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
  
  </div>
@@ -291,7 +308,7 @@ a.grey:hover {
 </div>
 
 <div class="slide" id="scorefiware">
- <h2>Tecnology Score</h2>
+ <h2>Technology Score</h2>
  <div class="label" style="left:6.909%; top:63.35%;">Good</div>
  <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
  <div class="bu">Our technologists judged the technical side: Wow about the use of FIWARE technology?
@@ -442,7 +459,7 @@ preload=[
 
 ]
     
-global = { mode : "gender", randomshow: 1, randomshow_enabled : 1 },
+global = { mode : "gender", randomshow: 1, randomshow_enabled : 1, follow : false };
 
 
 /* prepare interpolators for areas. an interpolator gives a random position within that area */
@@ -490,10 +507,27 @@ var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 
 svg.call(tooltip);
 
+function put_tooltip(e) {
+      var c=$("circle")[e];
+      var d=nodes[e]
+      var dir="n";
+      if (d.y<((settings.height+0.0)*0.2)) {
+	dir="s";
+       };
+      if (d.x<(settings.width*0.2)) {
+	dir="e";
+      }
+      if (d.x>(settings.width*0.8)) {
+	dir="w";
+       }
+     tooltip.direction(dir).show(d,c); 
+}
+
+
 var force = d3.layout.force()
-    .nodes(nodes)
-    .links([])
-    .gravity(0)
+.nodes(nodes)
+.links([])
+.gravity(0)
     .charge(-10)
     .chargeDistance(20)
     .size([settings.width, settings.height])
@@ -520,6 +554,10 @@ function tick(e) {
   node
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; });
+  if (global.follow != false) {
+	put_tooltip(global.follow);
+  }
+
 }
 
 radiusscale=d3.scale.linear().domain([3,5]).range([4,8]);
@@ -568,12 +606,14 @@ function heatmapColor(colors,domain) {
 //
 var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[20,30])
 
-      
+     
       
    function themode(m,d) {
 	if (_.keys(nmodes).indexOf(m)>-1 ) {
 		global.randomshow=0;
-   		tooltip.hide();
+		if (global.follow==false) {
+			tooltip.hide();
+		}
 		var nurl=document.location.href.replace(/#.*$/,"#"+m);
 		if (nurl.indexOf("#")==-1) {
 			nurl=nurl+"#"+m;
@@ -690,8 +730,18 @@ d3.csv("sue.csv",function(d) {
       .style("fill", function(d) { return d.fill; })
       .style("stroke", function(d) { return d3.rgb(d.fill).darker(0).toString(); }) 
       .call(force.drag)
-      .on('mouseover', function(d,e) { global.randomshow=0; tooltip.show(d,$("circle")[e]); })
-      .on('mouseout', function(d,e) { tooltip.hide(); resumeshow()});
+      .on('mouseover', function(d,e) { global.randomshow=0; 
+      				       if (global.follow==false) put_tooltip(e);
+				     })
+      .on('mouseout', function(d,e) { if (global.follow==false) { tooltip.hide(); resumeshow()}} )
+      .on('click', function(d,e) { if (global.follow == false) {
+      					global.follow=e;
+				   } else {
+				   	global.follow=false;
+					tooltip.hide();
+					d3.select(this).on("mouseover")(d,e);
+				   }});
+
 
       $("#curtain").fadeOut(1000);
       var h=document.location.href.match("#(.*)$");
@@ -719,9 +769,9 @@ svg.selectAll("image").data([0]).enter()
 
 window.setInterval(function() {
 	var circles=$("circle");
-	if ((global.randomshow) && (circles.length>0)) {
+	if ((global.randomshow) && (circles.length>0) && (global.follow == false)) {
 		var rn=Math.floor(Math.random()*nodes.length);
-		tooltip.show(nodes[rn],circles[rn]);
+		put_tooltip(rn);
 		global.randomshow=rn;
 	}
 },10000);
@@ -729,7 +779,9 @@ window.setInterval(function() {
 
 window.setInterval(function() {
 	if (global.randomshow) {
-		tooltip.hide();
+		if (global.follow == false ) {
+			tooltip.hide();
+		}
 		_.delay(nextmode(),100);
 	}
 },65000);
