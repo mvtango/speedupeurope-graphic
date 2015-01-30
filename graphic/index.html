@@ -464,7 +464,7 @@ global = { mode : "gender", randomshow: 1, randomshow_enabled : 1, follow : fals
 
 (function() { 
 	var h=document.location.href.match("#(.*)$");
-      	global.startwith= h ? h[1].toLowerCase() : "";
+      	global.startwith= h ? h[1].toLowerCase().replace("+"," ") : "";
 })();
 
 
@@ -721,7 +721,7 @@ d3.csv("sue.csv",function(d) {
 			}
 		});
 		nodes.push(n);
-		if (global.startwith && (global.follow == false) && (n.acronym.toLowerCase()==global.startwith)) {
+		if (global.startwith && (global.follow == false) && (n.acronym.toLowerCase().indexOf(global.startwith)==0)) {
 			global.follow=nodes.length-1;
 		}
 	})
