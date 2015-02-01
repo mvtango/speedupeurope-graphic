@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <head><title>SpeedUp Europe - The Winners</title>
 <meta charset="utf-8">
+<meta property="og:title" content="SpeedUpEurope - The Winners" />
+<!-- facebook -->
+<meta property="og:description" content="See this interactive about the 100 startups that have been selected for funding." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://apps.opendatacity.de/speedupeurope/0.3/" />
+<meta property="og:image" content="http://apps.opendatacity.de/speedupeurope/0.3/screenshot.png" />
+<!-- twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@opendatacity">
+<meta name="twitter:creator" content="@mvtango">
+<meta name="twitter:title" content="SpeedUpEurope - The Winners">
+<meta name="twitter:description" content="See this interactive about the 100 startups that have been selected for funding.">
+<meta name="twitter:image:src" content="http://apps.opendatacity.de/speedupeurope/0.3/screenshot.png">
+
 <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900;subset=latin%2Clatin-ext&#038;ver=3.8.1' type='text/css' media='all' />
 <link rel='stylesheet' id='fixed-google-abel-css'  href='http://fonts.googleapis.com/css?family=Abel&#038;ver=3.8.1' type='text/css' media='all' />
 <link rel="stylesheet" href="tooltip-styles.css">
@@ -45,7 +59,7 @@ z-index:
 	max-width: 780px;	
 	width: 100%;
 	height: 40px;
-	bottom: -366px;
+	bottom: -342px;
 	position: relative;
 }
 
@@ -173,7 +187,7 @@ a.grey:hover {
 </head>
 <body style="margin: 0px; padding: 0px; border: 0px; background: #ffffff">
 <div id="tosmall" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; padding-top: 150px; padding-left: 80px; padding-right: 80px; display: none">
-	Your screen may not wide enough to show this graphic. We recommend 600 pixels screen width.  
+	Your screen may not wide enough to show this graphic. We recommend 440 pixels screen width.  
 	<a href="#" onClick="$('#tosmall').fadeOut()">Show it anyway.</a>
 </div>
 <div id="browsehappy" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; display: none;background-color: #a0a0a0; padding-top: 10px;">
@@ -195,17 +209,17 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 <div style="margin-left: auto; margin-right: auto; background-color: #fff; width: 100%; max-width: 800px;">
 <div style="max-width: 800px; display: inline-block; text-align: left;">
 </div>
-<h1 style="position: absolute;z-Index: 1; margin-top: 0px; width: 100%; max-width: 800px; white-space: nowrap; overflow: hide; line-height:0">Welcome our 100 winners!
-<span style="float: right"><a target="_blank" href="http://speedupeurope.eu"><img id="logo-div" src="sue_logo_des.png" style="border: 0px; width: 100px; bottom: 24px; position: relative;" /></a></span>
+<h1 style="position: absolute;z-Index: 1; margin-top: 0px; width: 100%; max-width: 800px; overflow: hide; top: 0px; font-size: 33px; ">Welcome our 100 winners!
+<span id="logo-div" style="position: absolute; right: 0px; top: 0px; z-Index: -1;"><a target="_blank" href="http://speedupeurope.eu"><img src="sue_logo_des.png" style="border: 0px; width: 100px; " /></a></span>
 
 </h1>
 <div style="position: relative; height: 420px; width: 100%; max-width: 800px; display: inline-block; background: #ffffff; position: relative">
 <div id="background" style="width: 100%; max-width: 800px; height: 400px">
 </div>
 <div id="info" style="color: #a0a0a0; font-size:18px; text-align: center; z-index:1">
-<span style="display: none; float: left; color: #E0E0E0; position: absolute; left: 0px; z-Index:2" id="credit">
+<div style="display: none; float: left; color: #E0E0E0; position: absolute; left: 0px; z-Index:2; font-size: 13px; width: 95px; bottom: 12px" id="credit">
 	Interactive by <a class="grey" target="_blank" href="http://opendatacity.de">OpenDataCity</a>
-</span>
+</div>
 <span id="navi" style="margin: auto">
  	<a onClick="lastmode()" href="#" >&laquo; Back</a>
  	<a onClick="nextmode()" href="#" >Next &raquo;</a>
@@ -264,19 +278,19 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  
  </div>
     <div class="label" style="left:0%; top: 62.02%;">Portugal</div>
-    <div class="label" style="left: 11.53%; top: 74.64%;">Spain</div>
-    <div class="label" style="left:16.90%; top:53.35%;">Belgium</div>
+    <div class="label" style="left: 11.53%; top: 68.64%;">Spain</div>
+    <div class="label" style="left:16.90%; top:48.35%;">Belgium</div>
     <div class="label" style="left: 6%; top: 36.78%;">The Netherlands</div> 
-    <div class="label" style="left: 15.4%; top: 22.07%;">United Kingdom</div>
+    <div class="label" style="left: 6%; top: 22.07%;">United Kingdom</div>
     <div class="label" style="left: 40.15%; top: 21.92%;">Denmark</div> 
     <div class="label" style="left: 52.03%; top: 41.92%;">Germany</div>
-    <div class="label" style="left: 38.65%; top: 80.92%;">Italy</div> 
+    <div class="label" style="left: 38.65%; top: 75.92%;">Italy</div> 
     <div class="label" style="left: 57.65%; top:12.21%;">Sweden</div>
     <div class="label" style="left: 76.4%; top: 28.64%;">Latvia</div>
     <div class="label" style="left: 60.03%; top: 54.08%;">Czech Republic</div>
     <div class="label" style="left: 65.65%; top: 75.07%;">Serbia</div>
     <div class="label" style="left: 80.15%; top: 60.78%;">Bulgaria</div>
-    <div class="label" style="left: 81.65%; top: 83.07%;">Greece</div>
+    <div class="label" style="left: 81.65%; top: 75.07%;">Greece</div>
  <div class="bu">Companies and team leaders come from 13 different european countries.
  <br/>
  </div>
@@ -334,7 +348,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <h2>Team Score</h2>
  <div class="label" style="left:6.909%; top:63.35%;">Good</div>
  <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
- <div class="bu">People are as im important as ideas, if not more. Here's ho we rated the teams.
+ <div class="bu">People are as im important as ideas, if not more. Here's how we rated the teams.
  <br/> 
  </div>
 </div>
@@ -830,7 +844,7 @@ window.setInterval(function() {
 
 
 $(document).ready(function() {
-	if ($(window).width()<500) {
+	if ($(window).width()<440) {
 		$("#tosmall").css({ width: $("window").width()+"px" }).fadeIn();
 	}
 	if (window.parent==window) {
