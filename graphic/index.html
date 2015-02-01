@@ -230,13 +230,39 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 
 	<p>Hovering will give you more info, clicking will follow the proposal through the visualization.</p>
 
-	
-	<p style="font-size:80%"> This graphic is inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>, and relies heavily on his mind-blowing <a href="http://d3js.org/">d3.js</a>. You're welcome to fork the <a href="https://github.com/mvtango/speedupeurope-graphic">code on GitHub</a>. Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>.</p> </div>
+	<p>You are welcome to <a target="_blank" href="embed.html">embed</a> this interactive on your site. 
+
+	<p style="font-size:80%">Inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>, relying heavily on his mind-blowing <a href="http://d3js.org/">d3.js</a>. You can fork the <a href="https://github.com/mvtango/speedupeurope-graphic">code on GitHub</a>. Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>.</p> </div>
 </div>
 </div>
 <div id="frame" style="max-width: 800px; width: 100%; height: 350px; position: relative; top: 24px;" ></div>
 </div>
 <div class="invisible">
+
+<div class="slide" id="country">
+ <h2>From all over Europe</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ 
+ </div>
+    <div class="label" style="left:0%; top: 62.02%;">Portugal</div>
+    <div class="label" style="left: 11.53%; top: 68.64%;">Spain</div>
+    <div class="label" style="left:16.90%; top:48.35%;">Belgium</div>
+    <div class="label" style="left: 6%; top: 36.78%;">The Netherlands</div> 
+    <div class="label" style="left: 6%; top: 22.07%;">United Kingdom</div>
+    <div class="label" style="left: 40.15%; top: 21.92%;">Denmark</div> 
+    <div class="label" style="left: 52.03%; top: 41.92%;">Germany</div>
+    <div class="label" style="left: 38.65%; top: 75.92%;">Italy</div> 
+    <div class="label" style="left: 57.65%; top:12.21%;">Sweden</div>
+    <div class="label" style="left: 76.4%; top: 28.64%;">Latvia</div>
+    <div class="label" style="left: 60.03%; top: 54.08%;">Czech Republic</div>
+    <div class="label" style="left: 65.65%; top: 75.07%;">Serbia</div>
+    <div class="label" style="left: 80.15%; top: 60.78%;">Bulgaria</div>
+    <div class="label" style="left: 81.65%; top: 75.07%;">Greece</div>
+ <div class="bu">Companies and team leaders come from 13 different european countries.
+ <br/>
+ </div>
+</div>
+
 
 <div class="slide" id="size">
  <h2>Size of Team</h2>
@@ -269,30 +295,6 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <div class="label" style="left:42.26%; top:50.21%;">one country</div> 
  <div class="bu">We're based in Germany - and proud that many of our teams are multinational.
  <br/> 
- </div>
-</div>
-
-<div class="slide" id="country">
- <h2>From all over Europe</h2>
- <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
- 
- </div>
-    <div class="label" style="left:0%; top: 62.02%;">Portugal</div>
-    <div class="label" style="left: 11.53%; top: 68.64%;">Spain</div>
-    <div class="label" style="left:16.90%; top:48.35%;">Belgium</div>
-    <div class="label" style="left: 6%; top: 36.78%;">The Netherlands</div> 
-    <div class="label" style="left: 6%; top: 22.07%;">United Kingdom</div>
-    <div class="label" style="left: 40.15%; top: 21.92%;">Denmark</div> 
-    <div class="label" style="left: 52.03%; top: 41.92%;">Germany</div>
-    <div class="label" style="left: 38.65%; top: 75.92%;">Italy</div> 
-    <div class="label" style="left: 57.65%; top:12.21%;">Sweden</div>
-    <div class="label" style="left: 76.4%; top: 28.64%;">Latvia</div>
-    <div class="label" style="left: 60.03%; top: 54.08%;">Czech Republic</div>
-    <div class="label" style="left: 65.65%; top: 75.07%;">Serbia</div>
-    <div class="label" style="left: 80.15%; top: 60.78%;">Bulgaria</div>
-    <div class="label" style="left: 81.65%; top: 75.07%;">Greece</div>
- <div class="bu">Companies and team leaders come from 13 different european countries.
- <br/>
  </div>
 </div>
 
@@ -383,6 +385,22 @@ var settings= {
 }
 
 settings.width=$("#frame").width();
+		 
+function json_values(a,original) {
+	var r;
+        try {        
+		r=(new Function("return {"+decodeURIComponent(a)+"}"))();
+        } catch(e) {
+                r={ error : e}
+		if (typeof original == "undefined" ) {
+			original="original";
+		}
+		r[original]=a;
+        }
+	return r;
+}
+
+
 
 var lastlabel=null;
 
@@ -515,7 +533,10 @@ global = { mode : "gender", randomshow: 1, randomshow_enabled : 1, follow : fals
 
 (function() { 
 	var h=document.location.href.match("#(.*)$");
-      	global.startwith= h ? h[1].toLowerCase().replace("+"," ") : "";
+      	global.startwith= h ? json_values(h[1],"m") : {};
+	if (typeof global.startwith.f == "undefined") {
+		global.startwith.f=global.startwith.m;
+	}
 })();
 
 
@@ -666,6 +687,26 @@ var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[20,30])
 // heatmap=heatmapColor(["#990033","#f9b822","#f9b822"],[20,30]);
      
 // heatmap=heatmapColor(["#990033","#f9a000","#ff5500"],[20,30])
+
+function makeURL(vals) {
+	var u=[];
+	_.each(vals,function(e) {
+		var g=global.startwith[e];
+		if (typeof g == typeof "") {
+			g="'"+encodeURIComponent(g)+"'";
+		}
+		if (typeof g != "undefined") {
+			u.push(e+":"+g);
+		}
+	});
+	u=u.join(",")
+	var nurl=document.location.href.replace(/#.*$/,"#"+u);
+	if (nurl.indexOf("#")==-1) {
+			nurl=nurl+"#"+u;
+	}
+	return nurl;
+}
+
       
    function themode(m,d) {
 	if (_.keys(nmodes).indexOf(m)>-1 ) {
@@ -673,10 +714,8 @@ var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[20,30])
 		if (global.follow==false) {
 			tooltip.hide();
 		}
-		var nurl=document.location.href.replace(/#.*$/,"#"+m);
-		if (nurl.indexOf("#")==-1) {
-			nurl=nurl+"#"+m;
-		}
+		global.startwith.m=m;
+		var nurl=makeURL(["m","f","l"]);
 		if (d) {
 			_.delay(function() { 
 				global.mode=m;
@@ -767,8 +806,9 @@ d3.csv("sue.csv",function(d) {
 			}
 		});
 		nodes.push(n);
-		if (global.startwith && (global.follow == false) && (n.acronym.toLowerCase().indexOf(global.startwith)==0)) {
+		if (global.startwith && (global.follow == false) && (n.acronym.toLowerCase().indexOf(global.startwith.f)==0)) {
 			global.follow=nodes.length-1;
+			global.startwith.f=n.acronym.toLowerCase();
 		}
 	})
 
@@ -790,23 +830,26 @@ d3.csv("sue.csv",function(d) {
       .on('mouseout', function(d,e) { if (global.follow==false) { tooltip.hide(); resumeshow()}} )
       .on('click', function(d,e) { if (global.follow == false) {
       					global.follow=e;
+					global.startwith.f=d.acronym.toLowerCase();
+					document.location.href=makeURL(["m","f","l"]);
 				   } else {
 				   	global.follow=false;
 					tooltip.hide();
+					global.startwith.f=undefined;
 					d3.select(this).on("mouseover")(d,e);
+					document.location.href=makeURL(["m","f","l"]);
 				   }});
 
       $("#curtain").fadeOut(1000);
+      h=modes[0]
       if (global.startwith) {
-      	h=global.startwith;
-	if (_.keys(nmodes).indexOf(h)>-1) {
-		themode(h);
-	} else {
-		themode(modes[0])
+      	console.log(global.startwith);
+      	h=global.startwith.m;
+	if (modes.indexOf(h)==-1) {
+		h=modes[0];
 	}
-     } else {
-     	themode(modes[0]); 
-     }
+      }
+      themode(h);
 
 });
 /*
@@ -847,7 +890,7 @@ $(document).ready(function() {
 	if ($(window).width()<440) {
 		$("#tosmall").css({ width: $("window").width()+"px" }).fadeIn();
 	}
-	if (window.parent==window) {
+	if ((window.parent==window) || global.startwith.l) {
 		$("#logo-div").show();
 	}
 	$("#info").hover( function() { $("#credit").fadeIn(); $("#navi").fadeIn(); },

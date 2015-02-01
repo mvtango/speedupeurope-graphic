@@ -1,0 +1,13 @@
+{
+	"version": "1.0",
+	"type": "rich",
+	"width": 800,
+	"height": 469,
+	"title": "SpeedUpEurope - The Winners",
+	"url": "http://apps.opendatacity.de/speedupeurope/0.3/",
+	"author_name": "Martin Virtel",
+	"provider_name": "OpenDataCity",
+	"provider_url": "http://opendatacity.de/",
+"html" : "<iframe src=\"http://apps.opendatacity.de/speedupeurope/0.3/#l:1,m:'country'\" frameborder=\"0\" scrolling=\"no\" style=\"width: 100%; height:469px;\"></iframe>"
+
+}
