@@ -716,13 +716,13 @@ function makeURL(vals) {
 	_.each(vals,function(e) {
 		var g=global.startwith[e];
 		if (typeof g == typeof "") {
-			g="'"+encodeURIComponent(g)+"'";
+			g='"'+g+'"';
 		}
 		if (typeof g != "undefined") {
 			u.push(e+":"+g);
 		}
 	});
-	u=u.join(",")
+	u=encodeURIComponent(u.join(","))
 	var nurl=document.location.href.replace(/#.*$/,"#"+u);
 	if (nurl.indexOf("#")==-1) {
 			nurl=nurl+"#"+u;
@@ -855,7 +855,7 @@ d3.csv("sue.csv",function(d) {
       $("#curtain").fadeOut(1000);
       h=modes[0]
       if (global.startwith) {
-      	console.log(global.startwith);
+      	/* console.log(global.startwith); */
       	h=global.startwith.m;
 	if (modes.indexOf(h)==-1) {
 		h=modes[0];
