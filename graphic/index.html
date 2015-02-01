@@ -440,7 +440,7 @@ function make_areas(cols,rows) {
 
 
 // <>
-var nmodes = (function() {
+function set_nmodes() {
 	var nmodes={}
 	var scorescale=d3.scale.quantize().domain([21,28.5]).range(["0","1","2","3","4","5","6","7","8","9"]);
 	var fiwarescale=d3.scale.quantize().domain([6,10]).range(["0","1","2","3","4","5","6","7","8","9"]);
@@ -519,8 +519,40 @@ var nmodes = (function() {
 		  translate : function(d) { 
 				return countrymap[d.country] }
 		};
+	/* prepare interpolators for areas. an interpolator gives a random position within that area */
+	_.each(nmodes,function(value,key) {
+		interp={};
+		_.each(value.foci,function(mv,mk) {
+			var ips=[];
+			_.each(mv,function(e) {
+			      ips.push({ x: e.x+e.w/2, y: e.y+e.h/2});
+			});
+			interp[mk]=ips;
+		});
+	value['interp']=interp;
+	});
 	return nmodes
-})();
+};
+
+
+nmodes=set_nmodes();
+
+function configure_node(n) {
+	/* assign postion for each mode */
+	n.ips={}
+	_.each(nmodes,function(obj,key) {
+		focus=obj.interp[obj.translate(n)]; /* which bucket for that mode? */
+		if (typeof focus == "undefined") {
+			console.log("key: "+key+" ");
+			console.log("translated "+obj.translate(n));
+			console.log(n);
+		} else {
+			n.ips[key]=focus[Math.floor(focus.length*Math.random())];
+		}
+	});
+	return n
+}
+
 
 
 preload=[ 
@@ -539,22 +571,13 @@ global = { mode : "gender", randomshow: 1, randomshow_enabled : 1, follow : fals
 	}
 })();
 
-
-/* prepare interpolators for areas. an interpolator gives a random position within that area */
-_.each(nmodes,function(value,key) {
-	interp={};
-	_.each(value.foci,function(mv,mk) {
-		var ips=[];
-		_.each(mv,function(e) {
-		      ips.push({ x: e.x+e.w/2, y: e.y+e.h/2});
-		});
-	  	interp[mk]=ips;
-	});
-	value['interp']=interp;
-});
-
-
-
+function process_resize() {
+	settings.width=$("#frame").width();
+	$("svg").width(settings.width);
+	nmodes=set_nmodes();
+	_.each(nodes,function(n) { configure_node(n); }); 
+	force.start();
+}
 
 
 var svg = d3.select("div#frame").append("svg")
@@ -793,18 +816,7 @@ d3.csv("sue.csv",function(d) {
 	_.each(rows, function(n) {
 		n.radius=radiusscale(n["teamsize"]);
 		n.fill=heatmap(n["total"]);
-		/* assign postion for each mode */
-		n.ips={}
-		_.each(nmodes,function(obj,key) {
-			focus=obj.interp[obj.translate(n)]; /* which bucket for that mode? */
-			if (typeof focus == "undefined") {
-				console.log("key: "+key+" ");
-				console.log("translated "+obj.translate(n));
-				console.log(n);
-			} else {
-				n.ips[key]=focus[Math.floor(focus.length*Math.random())];
-			}
-		});
+		n=configure_node(n);
 		nodes.push(n);
 		if (global.startwith && (global.follow == false) && (n.acronym.toLowerCase().indexOf(global.startwith.f)==0)) {
 			global.follow=nodes.length-1;
@@ -850,6 +862,7 @@ d3.csv("sue.csv",function(d) {
 	}
       }
       themode(h);
+      $(window).on("resize",_.debounce(process_resize,300));
 
 });
 /*
