@@ -395,7 +395,7 @@ function json_values(a,original) {
 		if (typeof original == "undefined" ) {
 			original="original";
 		}
-		r[original]=a;
+		r[original]=a.replace("+"," ");
         }
 	return r;
 }
