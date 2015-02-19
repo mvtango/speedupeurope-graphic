@@ -209,7 +209,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 <div style="margin-left: auto; margin-right: auto; background-color: #fff; width: 100%; max-width: 800px;">
 <div style="max-width: 800px; display: inline-block; text-align: left;">
 </div>
-<h1 style="position: absolute;z-Index: 1; margin-top: 0px; width: 100%; max-width: 800px; overflow: hide; top: 0px; font-size: 33px; ">Welcome our 100 winners!
+<h1 style="position: absolute;z-Index: 1; margin-top: 0px; width: 100%; max-width: 800px; overflow: hide; top: 0px; font-size: 33px; "><span id="h1text">Welcome our 100 winners!</span>
 <span id="logo-div" style="position: absolute; right: 0px; top: 0px; z-Index: -1;"><a target="_blank" href="http://speedupeurope.eu"><img src="sue_logo_des.png" style="border: 0px; width: 100px; " /></a></span>
 
 </h1>
@@ -359,7 +359,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <h2>Technology Score</h2>
  <div class="label" style="left:6.909%; top:63.35%;">Good</div>
  <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
- <div class="bu">Our technologists judged the technical side: Wow about the use of FIWARE technology?
+ <div class="bu">Our technologists judged the technical side: How about the use of FIWARE technology?
  </div>
 </div>
 
@@ -905,6 +905,10 @@ $(document).ready(function() {
 	}
 	if ((window.parent==window) || global.startwith.l) {
 		$("#logo-div").show();
+	
+	} 
+	if (global.startwith.t) {
+		$("#h1text").hide();
 	}
 	$("#info").hover( function() { $("#credit").fadeIn(); $("#navi").fadeIn(); },
 	                       function() { $("#credit").fadeOut() });
